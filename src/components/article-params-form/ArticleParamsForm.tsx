@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import clsx from 'clsx';
 
 import { ArrowButton } from 'src/components/arrow-button';
@@ -40,7 +40,7 @@ export const ArticleParamsForm = (props: PropsArticleParamsForm) => {
 			}));
 		};
 
-	const handleSubmit = (event: any) => {
+	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		onSubmit?.(formState);
 	};
@@ -55,8 +55,7 @@ export const ArticleParamsForm = (props: PropsArticleParamsForm) => {
 			<ArrowButton isOpen={formOpen} onClick={() => onToggle?.()} />
 
 			<aside
-				className={clsx({
-					[styles.container]: true,
+				className={clsx(styles.container, {
 					[styles.container_open]: formOpen,
 				})}>
 				<form className={styles.form} onSubmit={handleSubmit}>
